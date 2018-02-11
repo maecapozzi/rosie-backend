@@ -27,7 +27,6 @@ module.exports = {
 }
 
 function saltHashPassword (password, salt = randomString()) {
-  console.log(typeof password)
   const hash = crypto.createHmac('sha512', salt).update(password)
   return {
     salt,
