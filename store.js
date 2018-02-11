@@ -4,7 +4,7 @@ module.exports = {
   saltHashPassword,
   createUser ({ username, password }) {
     console.log(`Add user ${username}`)
-    const { salt, hash } = saltHashPassword(password)
+    const { salt, hash } = saltHashPassword({ password })
     return knex('users').insert({
       salt,
       encrypted_password: hash,
@@ -26,7 +26,7 @@ module.exports = {
   }
 }
 
-function saltHashPassword (password, salt = randomString()) {
+function saltHashPassword ({ password, salt = randomString() }) {
   const hash = crypto.createHmac('sha512', salt).update(password)
   return {
     salt,
