@@ -2,8 +2,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const store = require('./store')
 const app = express()
+const cors = require('cors')
 app.use(express.static('public'))
 app.use(bodyParser.json())
+app.use(cors())
+
 app.post('/createUser', (req, res) => {
   store
     .createUser({
@@ -25,6 +28,6 @@ app.post('/login', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000')
+app.listen(3001, () => {
+  console.log('Server running on http://localhost:3001')
 })
