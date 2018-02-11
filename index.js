@@ -1,8 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-
 const store = require('./store')
-
 const app = express()
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -12,11 +10,8 @@ app.post('/createUser', (req, res) => {
       username: req.body.username,
       password: req.body.password
     })
-    .then(() => {
-      res.sendStatus
-    })
+    .then(() => res.sendStatus(200))
 })
-
 app.listen(3000, () => {
-  console.log('Server running on port 3000')
+  console.log('Server running on http://localhost:3000')
 })
